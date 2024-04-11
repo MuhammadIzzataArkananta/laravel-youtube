@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -13,7 +14,7 @@ class FrontController extends Controller
     public function index()
     {
         $kategoris = Kategori::all();
-        $menus = Menu::all();
+        $menus = Menu::paginate(3);
 
         return view('menu',[
             'kategoris'=>$kategoris,
@@ -42,7 +43,12 @@ class FrontController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kategoris=Kategori::all();
+        $menus=Menu::where('idkategori',$id)->paginate(1);
+        return view('kategori',[
+            'kategoris'=>$kategoris,
+            'menus'=>$menus
+        ]);
     }
 
     /**
@@ -67,5 +73,11 @@ class FrontController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    
+    public function register() 
+    {
+        $kategoris=Kategori::all();
+        return view('register',['kategoris'=>$kategoris]);
     }
 }

@@ -17,8 +17,8 @@
       </div>
     @endforeach
     <div class="d-flex justify-content-center mt-5">
-      {{ $menus->links() }}
-    </div>
+        {{ $menus->links() }}
+      </div>
 </div>
 @endsection
 </div>
