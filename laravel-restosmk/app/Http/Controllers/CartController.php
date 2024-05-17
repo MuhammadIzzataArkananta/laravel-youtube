@@ -94,7 +94,7 @@ class CartController extends Controller
                 'hargajual'=>$value['harga'],
             ];
 
-            $total=$total=($value['jumlah']*$value['harga']);
+            $total = $total + ($value['jumlah']*$value['harga']);
             OrderDetail::create($data);
         }
 
@@ -111,6 +111,6 @@ class CartController extends Controller
 
         Order::create($data);
 
-        return redirect('logout');
+        return redirect('/logout');
     }
 }
